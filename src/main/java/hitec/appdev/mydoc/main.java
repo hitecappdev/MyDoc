@@ -12,7 +12,7 @@ public class main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("doctorLogin.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("/doctorLogin.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);

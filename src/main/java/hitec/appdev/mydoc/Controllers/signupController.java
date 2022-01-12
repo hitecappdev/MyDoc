@@ -4,15 +4,18 @@ import com.google.gson.Gson;
 import hitec.appdev.mydoc.Models.Doctor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,6 +45,9 @@ public class signupController {
 
     @FXML
     PasswordField passwordInput;
+
+    @FXML
+    AnchorPane DoctorAnchor,patientAnchor;
 
     public void onCreateAccount(ActionEvent event) throws InterruptedException {
 
@@ -130,6 +136,50 @@ public class signupController {
 
     }
 
-    public void onGoToLogin(ActionEvent event) {
+    public void onGoToLogin(ActionEvent event)  {
+        try {
+            DoctorAnchor.getChildren().setAll(Collections.singleton(FXMLLoader.load(getClass().getResource("/doctorLogin.fxml"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+    public void onGoToLoginPatient(ActionEvent event)  {
+
+        try {
+            patientAnchor.getChildren().setAll(Collections.singleton(
+                    FXMLLoader.load(
+                            getClass().getResource("/patientLogin.fxml"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public void onSwitchToDoctor(ActionEvent event)  {
+
+        try {
+            patientAnchor.getChildren().setAll(Collections.singleton(
+                    FXMLLoader.load(
+                            getClass().getResource("/doctorLogin.fxml"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public void onSwitchToPatient(ActionEvent event)  {
+
+        try {
+            DoctorAnchor.getChildren().setAll(Collections.singleton(
+                    FXMLLoader.load(
+                            getClass().getResource("/patientLogin.fxml"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
 }

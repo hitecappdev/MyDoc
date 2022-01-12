@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hitec.appdev.mydoc.Controllers.signupController">
+<AnchorPane fx:id="DoctorAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hitec.appdev.mydoc.Controllers.signupController">
    <children>
       <Label layoutX="40.0" layoutY="43.0" text="Doctor sign up">
          <font>
@@ -18,7 +18,7 @@
          </font>
       </Label>
       <Label layoutX="40.0" layoutY="88.0" text="Full name" textFill="#979191" />
-      <TextField fx:id="nameInput" layoutX="41.0" layoutY="105.0" prefHeight="28.0" prefWidth="293.0" styleClass="inputs" stylesheets="@style.css" />
+      <TextField fx:id="nameInput" layoutX="41.0" layoutY="105.0" prefHeight="28.0" prefWidth="293.0" styleClass="inputs" stylesheets="@hitec/appdev/mydoc/style.css" />
       <AnchorPane layoutX="351.0" prefHeight="401.0" prefWidth="250.0" style="-fx-background-color: #0F7375;">
          <children>
             <Label layoutX="27.0" layoutY="305.0" maxWidth="300.0" prefHeight="28.0" prefWidth="200.0" text="Creating an account means that you're okey" textFill="WHITE">
@@ -33,18 +33,18 @@
             </Label>
             <ImageView fitHeight="260.0" fitWidth="250.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/singupIllustration.jpeg" />
+                  <Image url="@hitec/appdev/mydoc/images/singupIllustration.jpeg" />
                </image>
             </ImageView>
-            <Button layoutX="48.0" layoutY="272.0" mnemonicParsing="false" style="-fx-background-color: #C2CD23;" text="Switch to Patient Interface" />
+            <Button layoutX="48.0" layoutY="272.0" mnemonicParsing="false" onAction="#onSwitchToPatient" style="-fx-background-color: #C2CD23;" text="Switch to Patient Interface" />
          </children>
       </AnchorPane>
       <Label layoutX="40.0" layoutY="146.0" text="Email" textFill="#979191" />
-      <TextField fx:id="emailInput" layoutX="40.0" layoutY="163.0" prefHeight="28.0" prefWidth="294.0" styleClass="inputs" stylesheets="@style.css" />
+      <TextField fx:id="emailInput" layoutX="40.0" layoutY="163.0" prefHeight="28.0" prefWidth="294.0" styleClass="inputs" stylesheets="@hitec/appdev/mydoc/style.css" />
       <Label layoutX="40.0" layoutY="204.0" text="Phone number" textFill="#979191" />
-      <TextField fx:id="phoneInput" layoutX="40.0" layoutY="221.0" prefHeight="28.0" prefWidth="294.0" styleClass="inputs" stylesheets="@style.css" />
+      <TextField fx:id="phoneInput" layoutX="40.0" layoutY="221.0" prefHeight="28.0" prefWidth="294.0" styleClass="inputs" stylesheets="@hitec/appdev/mydoc/style.css" />
       <Label layoutX="40.0" layoutY="264.0" text="Password" textFill="#979191" />
-      <PasswordField fx:id="passwordInput" layoutX="41.0" layoutY="282.0" prefHeight="28.0" prefWidth="293.0" styleClass="inputs" stylesheets="@style.css" />
+      <PasswordField fx:id="passwordInput" layoutX="41.0" layoutY="282.0" prefHeight="28.0" prefWidth="293.0" styleClass="inputs" stylesheets="@hitec/appdev/mydoc/style.css" />
       <Label layoutX="41.0" layoutY="315.0" text="Minimum 6 characters." textFill="#e8e3e3">
          <font>
             <Font size="10.0" />
