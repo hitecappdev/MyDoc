@@ -19,20 +19,21 @@
          </font>
       </Label>
       <Label layoutX="37.0" layoutY="137.0" text="Email" textFill="#979191" />
-      <TextField layoutX="38.0" layoutY="154.0" prefHeight="28.0" prefWidth="293.0" styleClass="inputs" stylesheets="@hitec/appdev/mydoc/style.css" />
+      <TextField fx:id="emailInput" layoutX="37.0" layoutY="154.0" prefHeight="28.0" prefWidth="293.0" styleClass="inputs" stylesheets="@hitec/appdev/mydoc/style.css" />
       <AnchorPane layoutX="351.0" prefHeight="401.0" prefWidth="250.0" style="-fx-background-color: #0F7375;">
          <children>
-            <Line endX="100.0" layoutX="125.0" layoutY="363.0" startX="-100.0" stroke="WHITE" />
-            <ImageView fx:id="loginImage" fitHeight="130.0" fitWidth="130.0" layoutX="62.0" layoutY="115.0" preserveRatio="true">
+            <Line endX="100.0" layoutX="125.0" layoutY="365.0" startX="-100.0" stroke="WHITE" />
+            <Button layoutX="50.0" layoutY="325.0" mnemonicParsing="false" onAction="#onSwitchToDoctor" style="-fx-background-color: #C2CD23;" text="Switch to Doctor Interface" />
+            <ImageView fitHeight="243.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@hitec/appdev/mydoc/images/heartbeat.png" />
-               </image></ImageView>
-            <Button layoutX="47.0" layoutY="325.0" mnemonicParsing="false" onAction="#onSwitchToDoctor" style="-fx-background-color: #C2CD23;" text="Switch to Doctor Interface" />
+                  <Image url="@hitec/appdev/mydoc/images/contactDoc.jpg" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <Label layoutX="37.0" layoutY="203.0" text="Password" textFill="#979191" />
-      <PasswordField layoutX="38.0" layoutY="221.0" prefHeight="28.0" prefWidth="293.0" styleClass="inputs" stylesheets="@hitec/appdev/mydoc/style.css" />
-      <Button layoutX="38.0" layoutY="282.0" mnemonicParsing="false" style="-fx-background-color: #0F7375; -fx-background-radius: 0;" text="Login" textFill="WHITE">
+      <PasswordField fx:id="passwordInput" layoutX="38.0" layoutY="221.0" prefHeight="28.0" prefWidth="293.0" styleClass="inputs" stylesheets="@hitec/appdev/mydoc/style.css" />
+      <Button layoutX="38.0" layoutY="282.0" mnemonicParsing="false" onAction="#onLoginPatient" style="-fx-background-color: #0F7375; -fx-background-radius: 0;" text="Login" textFill="WHITE">
          <padding>
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
          </padding>

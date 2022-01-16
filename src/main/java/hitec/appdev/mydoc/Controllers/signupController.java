@@ -2,6 +2,7 @@ package hitec.appdev.mydoc.Controllers;
 
 import com.google.gson.Gson;
 import hitec.appdev.mydoc.Models.Doctor;
+import hitec.appdev.mydoc.Models.Patient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,35 +24,12 @@ public class signupController {
 
     private String name , email , phone , password;
     private Doctor _doctor = new Doctor();
+    private Patient _patient = new Patient();
     private Gson gson = new Gson();
 
+    byte a =0;
 
-    public static boolean valEmail(String input){
-
-        String emailReg = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
-
-        Pattern emailPat = Pattern.compile(emailReg,Pattern.CASE_INSENSITIVE);
-
-        Matcher matcher = emailPat.matcher(input);
-
-        return matcher.find();
-    }
-
-    @FXML
-    TextField nameInput,phoneInput,emailInput;
-
-    @FXML
-    Label label,label1,label2,label3,label4;
-
-    @FXML
-    PasswordField passwordInput;
-
-    @FXML
-    AnchorPane DoctorAnchor,patientAnchor;
-
-    public void onCreateAccount(ActionEvent event) throws InterruptedException {
-
-        byte a =0;
+    void testInputs(){
 
         if(nameInput.getText().length()<8){
             label1.setText("Full name is too weak!");
@@ -86,6 +64,34 @@ public class signupController {
             label4.setText("");
         }
 
+    }
+
+    public static boolean valEmail(String input){
+
+        String emailReg = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+
+        Pattern emailPat = Pattern.compile(emailReg,Pattern.CASE_INSENSITIVE);
+
+        Matcher matcher = emailPat.matcher(input);
+
+        return matcher.find();
+    }
+
+    @FXML
+    TextField nameInput,phoneInput,emailInput;
+
+    @FXML
+    Label label,label1,label2,label3,label4;
+
+    @FXML
+    PasswordField passwordInput;
+
+    @FXML
+    AnchorPane DoctorAnchor,patientAnchor;
+
+    public void onCreateAccount(ActionEvent event) throws InterruptedException {
+
+        testInputs();
 
         if(a==0) {
 
@@ -135,6 +141,57 @@ public class signupController {
         }
 
     }
+
+    public void onCreateAccountPatient(ActionEvent event) throws InterruptedException {
+
+        testInputs();
+
+        if(a==0) {
+            try {
+
+                _patient.setName(nameInput.getText());
+                _patient.setPassword(passwordInput.getText());
+                _patient.setEmail(emailInput.getText());
+                _patient.setPhone(phoneInput.getText());
+
+                System.out.println(gson.toJson(_patient));
+
+                String url = "http://localhost:8080/patient/add";
+
+                HttpClient client = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(url))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(_patient)))
+                        .build();
+
+                try {
+                    HttpResponse response = client.send(request,
+                            HttpResponse.BodyHandlers.ofString());
+
+                    if(response.statusCode()==500){
+                        System.out.println("This name is Already used !");
+                        label1.setText("This name is Already used !");
+                    }else if(response.statusCode()!=200){
+                        label.setText("Error from server Try later!");
+                    }
+
+                } catch (IOException e) {
+                    label.setText("Error from server Try later!");
+                    e.printStackTrace();
+                }
+
+            }catch (Exception e){
+                label.setText("Error from server Try later!");
+
+                e.printStackTrace();
+            }
+
+
+        }
+
+    }
+
 
     public void onGoToLogin(ActionEvent event)  {
         try {

@@ -2,6 +2,7 @@ package hitec.appdev.mydoc.Controllers;
 
 import com.google.gson.Gson;
 import hitec.appdev.mydoc.Models.Doctor;
+import hitec.appdev.mydoc.Models.Patient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +33,7 @@ public class loginController  {
     private Scene scene;
 
     private Doctor _doctor = new Doctor();
+    private Patient _patient = new Patient();
     private Gson gson = new Gson();
 
     @FXML
@@ -39,11 +41,12 @@ public class loginController  {
     @FXML
     PasswordField passwordInput;
 
+
     public void onLogin(ActionEvent event) {
 
         String url = "http://localhost:8080/doctor/login";
 
-        _doctor.setName(emailInput.getText());
+        _doctor.setEmail(emailInput.getText());
         _doctor.setPassword(passwordInput.getText());
 
         HttpClient client = HttpClient.newHttpClient();
@@ -64,6 +67,33 @@ public class loginController  {
         }
 
     }
+
+    public void onLoginPatient(ActionEvent event) {
+
+        String url = "http://localhost:8080/patient/login";
+
+        _patient.setEmail(emailInput.getText());
+        _patient.setPassword(passwordInput.getText());
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(_patient)))
+                .build();
+
+        try {
+            HttpResponse<String> response = client.send(request,
+                    HttpResponse.BodyHandlers.ofString());
+
+            System.out.println(response.body());
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     @FXML
     AnchorPane DoctorAnchor,patientAnchor;
