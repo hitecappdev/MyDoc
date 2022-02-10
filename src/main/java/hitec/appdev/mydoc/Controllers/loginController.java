@@ -7,14 +7,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -28,10 +31,9 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class loginController  {
-
+    private Parent root;
     private Stage stage;
     private Scene scene;
-
     private Doctor _doctor = new Doctor();
     private Patient _patient = new Patient();
     private Gson gson = new Gson();
@@ -40,30 +42,59 @@ public class loginController  {
     TextField emailInput;
     @FXML
     PasswordField passwordInput;
-
+    @FXML
+    Label label;
 
     public void onLogin(ActionEvent event) {
 
         String url = "http://localhost:8080/doctor/login";
 
-        _doctor.setEmail(emailInput.getText());
-        _doctor.setPassword(passwordInput.getText());
+        if(!emailInput.getText().equals("") && !passwordInput.getText().equals("")) {
 
-        HttpClient client = HttpClient.newHttpClient();
+            _doctor.setEmail(emailInput.getText());
+            _doctor.setPassword(passwordInput.getText());
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(_doctor)))
-                .build();
+            HttpClient client = HttpClient.newHttpClient();
 
-        try {
-            HttpResponse<String> response = client.send(request,
-                    HttpResponse.BodyHandlers.ofString());
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(_doctor)))
+                    .build();
 
-            System.out.println(response.body());
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            try {
+                HttpResponse<String> response = client.send(request,
+                        HttpResponse.BodyHandlers.ofString());
+
+                if (!response.body().equals("Your are LogIn successfully")) {
+                    label.setText(response.body());
+                } else {
+                    // go to Home Page
+
+                    HomeController homeController = new HomeController();
+
+                    homeController.getInfo(emailInput.getText(),"Doctor");
+
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/doctorHome.fxml"));
+                    root = fxmlLoader.load();
+
+                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+
+                    //center la scene
+                    Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                    stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
+                    stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
+
+                }
+            } catch (IOException | InterruptedException e) {
+                label.setText("Error from server Try later!");
+                e.printStackTrace();
+            }
+        }else {
+            label.setText("Please insert your login info");
         }
 
     }
@@ -72,32 +103,61 @@ public class loginController  {
 
         String url = "http://localhost:8080/patient/login";
 
-        _patient.setEmail(emailInput.getText());
-        _patient.setPassword(passwordInput.getText());
+        if(!emailInput.getText().equals("") && !passwordInput.getText().equals("")) {
 
-        HttpClient client = HttpClient.newHttpClient();
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(_patient)))
-                .build();
+            _patient.setEmail(emailInput.getText());
+            _patient.setPassword(passwordInput.getText());
 
-        try {
-            HttpResponse<String> response = client.send(request,
-                    HttpResponse.BodyHandlers.ofString());
+            HttpClient client = HttpClient.newHttpClient();
 
-            System.out.println(response.body());
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(_patient)))
+                    .build();
+
+            try {
+                HttpResponse<String> response = client.send(request,
+                        HttpResponse.BodyHandlers.ofString());
+
+                if(!response.body().equals("Your are LogIn successfully")) {
+                    label.setText(response.body());
+                }else {
+                    // go to Home Page
+
+                    HomeController homeController = new HomeController();
+
+                    homeController.getInfo(emailInput.getText(),"Patient");
+
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/patientHome.fxml"));
+                    root = fxmlLoader.load();
+
+                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+
+                    //center la scene
+                    Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                    stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
+                    stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
+
+
+                }
+
+            } catch (IOException | InterruptedException e) {
+                label.setText("Error from server Try later!");
+                e.printStackTrace();
+            }
+        }else {
+            label.setText("Please insert your login info");
         }
 
     }
 
-
     @FXML
     AnchorPane DoctorAnchor,patientAnchor;
-
     public void onGoToSignup(ActionEvent event)  {
 
         try {
@@ -109,7 +169,6 @@ public class loginController  {
         }
 
     }
-
     public void onGoToSignupPatient(ActionEvent event)  {
 
         try {

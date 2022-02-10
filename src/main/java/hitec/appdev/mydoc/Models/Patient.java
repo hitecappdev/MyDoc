@@ -2,13 +2,68 @@ package hitec.appdev.mydoc.Models;
 
 public class Patient {
 
+
     private String name;
     private String email;
     private String phone;
     private String password;
     private String city;
-    private String speciality;
-    private int rate;
+    private String gender;
+    private String height;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public boolean isDiabetic() {
+        return diabetic;
+    }
+
+    public void setDiabetic(boolean diabetic) {
+        this.diabetic = diabetic;
+    }
+
+    public Patient(String name, String email, String phone, String gender, String height, String weight, boolean diabetic) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.gender = gender;
+        this.height = height;
+        this.weight = weight;
+        this.diabetic = diabetic;
+    }
+
+    private String weight;
+    private String age;
+    private boolean diabetic = false ;
 
     public Patient(){
 
@@ -62,19 +117,6 @@ public class Patient {
         this.city = city;
     }
 
-    public String getSpeciality() {
-        return speciality;
-    }
 
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
-    }
 
-    public int getRate() {
-        return rate;
-    }
-
-    public void setRate(int rate) {
-        this.rate = rate;
-    }
 }

@@ -1,13 +1,42 @@
 package hitec.appdev.mydoc.Models;
 
+import java.util.List;
+
 public class Doctor {
+
     private String name;
     private String email;
     private String phone;
     private String password;
     private String city;
     private String speciality;
-    private int rate;
+    private String age;
+    private String gender;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public Doctor(String name, String email, String phone,  String city, String speciality,  String gender) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.city = city;
+        this.speciality = speciality;
+        this.gender = gender;
+    }
 
     public Doctor(){
 
@@ -69,11 +98,4 @@ public class Doctor {
         this.speciality = speciality;
     }
 
-    public int getRate() {
-        return rate;
-    }
-
-    public void setRate(int rate) {
-        this.rate = rate;
-    }
 }

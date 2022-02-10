@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" style="-fx-background-color: #0F7375; -fx-background-radius: 10; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hitec.appdev.mydoc.Controllers.CardController">
+   <children>
+      <Circle fill="WHITE" layoutX="125.0" layoutY="54.0" radius="40.0" stroke="WHITE" strokeType="INSIDE" />
+      <Label fx:id="iconName" layoutX="109.0" layoutY="34.0" text="Dr" textFill="#0f7375">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Label>
+      <Line endX="100.0" layoutX="125.0" layoutY="108.0" startX="-100.0" stroke="WHITE" />
+      <Label layoutX="46.0" layoutY="132.0" text="Nom  :" textFill="WHITE" />
+      <Label fx:id="nameId" layoutX="126.0" layoutY="131.0" text="Hamza Daiz" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="46.0" layoutY="171.0" prefHeight="17.0" prefWidth="56.0" text="Adresse :" textFill="WHITE" />
+      <Label fx:id="cityId" layoutX="126.0" layoutY="170.0" text="Marrakech" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="46.0" layoutY="210.0" text="Speciallitie :" textFill="WHITE" />
+      <Label fx:id="specialityId" layoutX="126.0" layoutY="209.0" text="Generaliste" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="98.0" layoutY="242.0" mnemonicParsing="false" style="-fx-background-color: #C2CD23;" text="Check" />
+   </children>
+</AnchorPane>

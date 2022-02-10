@@ -15,7 +15,7 @@ public class main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/doctorLogin.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setResizable(false);
-        stage.initStyle(StageStyle.UNDECORATED);
+      //  stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
 

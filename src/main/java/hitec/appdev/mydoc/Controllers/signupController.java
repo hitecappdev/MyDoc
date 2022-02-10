@@ -2,6 +2,7 @@ package hitec.appdev.mydoc.Controllers;
 
 import com.google.gson.Gson;
 import hitec.appdev.mydoc.Models.Doctor;
+import hitec.appdev.mydoc.Models.Notification;
 import hitec.appdev.mydoc.Models.Patient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,12 +22,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class signupController {
-
     private String name , email , phone , password;
     private Doctor _doctor = new Doctor();
-    private Patient _patient = new Patient();
+    private Notification _notification ;
+    private Patient patient = new Patient();
     private Gson gson = new Gson();
-
     byte a =0;
 
     void testInputs(){
@@ -79,13 +79,10 @@ public class signupController {
 
     @FXML
     TextField nameInput,phoneInput,emailInput;
-
     @FXML
     Label label,label1,label2,label3,label4;
-
     @FXML
     PasswordField passwordInput;
-
     @FXML
     AnchorPane DoctorAnchor,patientAnchor;
 
@@ -96,32 +93,51 @@ public class signupController {
         if(a==0) {
 
             try {
+                System.out.println(nameInput.getText());
 
                 _doctor.setName(nameInput.getText());
                 _doctor.setPassword(passwordInput.getText());
                 _doctor.setEmail(emailInput.getText());
                 _doctor.setPhone(phoneInput.getText());
 
-                _doctor = new Doctor(name,email,phone,password);
-
                 System.out.println(gson.toJson(_doctor));
 
                 String url = "http://localhost:8080/doctor/add";
 
+                String urlNotify = "http://localhost:8080/doctor/notify";
+
+
                 HttpClient client = HttpClient.newHttpClient();
+
                 HttpRequest request = HttpRequest.newBuilder()
                         .uri(URI.create(url))
                         .header("Content-Type", "application/json")
                         .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(_doctor)))
                         .build();
 
+                _notification = new Notification();
+
+                HttpRequest requestNotify = HttpRequest.newBuilder()
+                        .uri(URI.create(url))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(_notification)))
+                        .build();
+
                 try {
                     HttpResponse response = client.send(request,
                             HttpResponse.BodyHandlers.ofString());
 
+                    if(response.statusCode() == 200){
+                        try {
+                            DoctorAnchor.getChildren().setAll(Collections.singleton(FXMLLoader.load(getClass().getResource("/doctorLogin.fxml"))));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
                     if(response.statusCode()==500){
-                        System.out.println("This name is Already used !");
-                        label1.setText("This name is Already used !");
+                        System.out.println("This email is Already used !");
+                        label2.setText("This email is Already used !");
                     }else if(response.statusCode()!=200){
                         label.setText("Error from server Try later!");
                     }
@@ -149,12 +165,12 @@ public class signupController {
         if(a==0) {
             try {
 
-                _patient.setName(nameInput.getText());
-                _patient.setPassword(passwordInput.getText());
-                _patient.setEmail(emailInput.getText());
-                _patient.setPhone(phoneInput.getText());
+                patient.setName(nameInput.getText());
+                patient.setPassword(passwordInput.getText());
+                patient.setEmail(emailInput.getText());
+                patient.setPhone(phoneInput.getText());
 
-                System.out.println(gson.toJson(_patient));
+                System.out.println(gson.toJson(patient));
 
                 String url = "http://localhost:8080/patient/add";
 
@@ -162,7 +178,7 @@ public class signupController {
                 HttpRequest request = HttpRequest.newBuilder()
                         .uri(URI.create(url))
                         .header("Content-Type", "application/json")
-                        .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(_patient)))
+                        .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(patient)))
                         .build();
 
                 try {
@@ -170,10 +186,17 @@ public class signupController {
                             HttpResponse.BodyHandlers.ofString());
 
                     if(response.statusCode()==500){
-                        System.out.println("This name is Already used !");
-                        label1.setText("This name is Already used !");
+                        label2.setText("This email is Already used !");
                     }else if(response.statusCode()!=200){
                         label.setText("Error from server Try later!");
+                    }else {
+                        try {
+                            patientAnchor.getChildren().setAll(Collections.singleton(
+                                    FXMLLoader.load(
+                                            getClass().getResource("/patientLogin.fxml"))));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                 } catch (IOException e) {

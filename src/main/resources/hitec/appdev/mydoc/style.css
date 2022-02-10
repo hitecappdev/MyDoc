@@ -2,4 +2,5 @@
 .inputs{
     -fx-background-color :"white";
     -fx-border-color: "#979191";
+    -fx-border-radius: 5;
 }
