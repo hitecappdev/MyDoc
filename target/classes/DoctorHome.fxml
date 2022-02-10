@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hitec.appdev.mydoc.Controllers.HomeController">
+   <children>
+      <VBox layoutX="1.0" layoutY="-2.0" prefHeight="702.0" prefWidth="151.0" style="-fx-background-color: #0F7375;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="140.0" prefWidth="151.0" style="-fx-background-color: #0F7375;">
+               <children>
+                  <ImageView fitHeight="108.0" fitWidth="95.0" layoutX="28.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@hitec/appdev/mydoc/icons/user.png" />
+                     </image></ImageView>
+               </children>
+            </Pane>
+            <AnchorPane prefHeight="104.0" prefWidth="229.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="51.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@hitec/appdev/mydoc/icons/home.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane onMouseClicked="#onGoToSeach" prefHeight="104.0" prefWidth="153.0" />
+            <AnchorPane prefHeight="104.0" prefWidth="229.0">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="51.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@hitec/appdev/mydoc/icons/menu.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="104.0" prefWidth="229.0">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="51.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@hitec/appdev/mydoc/icons/bookmark.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="104.0" prefWidth="229.0">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="51.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@hitec/appdev/mydoc/icons/exit.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <StackPane layoutX="276.0" layoutY="-2.0" prefHeight="702.0" prefWidth="949.0" style="-fx-background-color: #DDFFE7;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <GridPane style="-fx-background-color: white;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane layoutX="30.0" layoutY="39.0" prefHeight="640.0" prefWidth="421.0" style="-fx-background-radius: 12; -fx-background-color: #0F7375;">
+                           <children>
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="311.0" prefHeight="74.0" prefWidth="89.0" style="-fx-font-weight: bold;" styleClass="phomecss" text="Adress" textFill="#c1ffd7">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="phoneLabel" layoutX="167.0" layoutY="243.0" prefHeight="69.0" prefWidth="180.0" textFill="#feffff">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="-15.0" layoutY="242.0" prefHeight="69.0" prefWidth="203.0" style="-fx-font-weight: bold;" styleClass="phomecss" text="Phone Number :" textFill="#c1ffd7">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="emailLabel" layoutX="167.0" layoutY="176.0" prefHeight="69.0" style="-fx-font-weight: bold;" textFill="#f5f5f5">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="20.0" layoutY="176.0" prefHeight="68.0" prefWidth="79.0" styleClass="phomecss" text="E-mail : " textFill="#c1ffd7">
+                                 <font>
+                                    <Font name="Arial Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nameLabel" layoutX="167.0" layoutY="110.0" prefHeight="69.0" prefWidth="238.0" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="-6.0" layoutY="107.0" prefHeight="73.0" prefWidth="147.0" style="-fx-font-weight: bold;" styleClass="phomecss" text="Full Name :" textFill="#c1ffd7">
+                                 <font>
+                                    <Font name="Arial Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="24.0" layoutY="33.0" text="Personal Information" textFill="WHITE">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="adressInput" layoutX="164.0" layoutY="328.0" prefHeight="51.0" prefWidth="194.0" promptText="adress" style="-fx-background-radius: 9; -fx-background-color: #CDF2CA; -fx-border-color: #0F7375;">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></TextField>
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="391.0" prefHeight="74.0" prefWidth="118.0" style="-fx-font-weight: bold;" styleClass="phomecss" text="Speciality :" textFill="#c1ffd7">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="specialityInput" layoutX="164.0" layoutY="408.0" prefHeight="51.0" prefWidth="194.0" promptText="Speciality" style="-fx-background-radius: 9; -fx-background-color: #CDF2CA; -fx-border-color: #0F7375;">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </TextField>
+                              <Button fx:id="phomesubmitbutton" layoutX="123.0" layoutY="557.0" mnemonicParsing="false" onAction="#onSubmitInfoDoctor" prefHeight="50.0" prefWidth="135.0" style="-fx-background-color: #C2CD23;" text="Edit" textFill="#030303">
+                                 <font>
+                                    <Font name="Arial" size="20.0" />
+                                 </font>
+                              </Button>
+                              <RadioButton fx:id="choiceFemale" layoutX="270.0" layoutY="473.0" mnemonicParsing="false" onAction="#getGender" prefHeight="62.0" prefWidth="95.0" text="Female" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="gender" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="choiceMale" layoutX="165.0" layoutY="472.0" mnemonicParsing="false" onAction="#getGender" prefHeight="63.0" prefWidth="79.0" text="Male" textFill="WHITE">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="gender" />
+                                 </toggleGroup>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </RadioButton>
+                              <Label alignment="CENTER" layoutX="3.0" layoutY="468.0" prefHeight="67.0" prefWidth="127.0" text="Gender :" textFill="#c1ffd7">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <ImageView fitHeight="441.0" fitWidth="431.0" layoutX="22.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@hitec/appdev/mydoc/images/docHome.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </GridPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
